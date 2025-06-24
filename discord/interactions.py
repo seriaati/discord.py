@@ -191,6 +191,7 @@ class Interaction(Generic[ClientT]):
         'channel',
         '_cs_namespace',
         '_cs_command',
+        'raw_data',
     )
 
     def __init__(self, *, data: InteractionPayload, state: ConnectionState[ClientT]):
@@ -203,6 +204,7 @@ class Interaction(Generic[ClientT]):
         self._baton: Any = MISSING
         self.extras: Dict[Any, Any] = {}
         self.command_failed: bool = False
+        self.raw_data: InteractionPayload = data
         self._from_data(data)
 
     def __repr__(self) -> str:
